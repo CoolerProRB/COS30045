@@ -1,7 +1,8 @@
 $("#nav").load("shared/nav_bar.html");
 
-function loadPage(filePath, id){
+function loadPage(filePath, id, title){
     $("#content").load(filePath);
+    $("title").text(title);
 }
 
 function loadImage(fileName, description){
