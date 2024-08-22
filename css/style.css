@@ -4,11 +4,16 @@ body {
   background-image: linear-gradient(to bottom, #2BFFFFFF, #a5dada, #dcdcdc);
   min-height: 100vh;
   font-family: Arial;
+  position: relative;
+}
+#nav{
+  position: sticky;
+  top: 0;
 }
 nav{
   display: flex;
   justify-content: center;
-  background-color: #b3dede;
+  background-color: #1e6464;
 }
 .navbar {
   overflow: hidden;
