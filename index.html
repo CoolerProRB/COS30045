@@ -16,7 +16,15 @@
         <footer>COS30045 Data Visualisation</footer>
         <script src="js/script.js"></script>
         <script>
-            loadPage('lab1/1.html', 'Lab 1.1');
+            let title = sessionStorage.getItem("title");
+            let path = sessionStorage.getItem("path");
+
+            if(title && path){
+                loadPage(path, title);
+            }
+            else{
+                loadPage("home.html", "Home")
+            }
         </script>
     </body>
 </html>

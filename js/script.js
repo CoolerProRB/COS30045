@@ -10,6 +10,9 @@ $("#nav").load("shared/nav_bar.html");
 function loadPage(filePath, title){
     $("#content").load(filePath);
     $("title").text(title);
+
+    sessionStorage.setItem("title", title);
+    sessionStorage.setItem("path", filePath);
 }
 
 /**

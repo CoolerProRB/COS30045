@@ -1,10 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to bottom, #2BFFFFFF, #a5dada, #dcdcdc);
+  background-color: #232323;
   min-height: 100vh;
   font-family: Arial;
   position: relative;
+  color: #f8f9fa;
 }
 #nav{
   position: sticky;
@@ -13,7 +14,7 @@ body {
 nav{
   display: flex;
   justify-content: center;
-  background-color: #1e6464;
+  background-color: #343636;
 }
 .navbar {
   overflow: hidden;
@@ -47,7 +48,7 @@ nav{
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #008cff;
+  background-color: #5a5c5e;
 }
 
 .dropdown-content {
@@ -61,7 +62,8 @@ nav{
 
 .dropdown-content a {
   float: none;
-  color: black;
+  color: #f8f9fa;
+  background-color: #343636;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -70,7 +72,7 @@ nav{
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #5a5c5e;
 }
 
 .dropdown:hover .dropdown-content {
@@ -91,7 +93,7 @@ nav{
 footer {
   text-align: center;
   width: 100%;
-  border-top: 1px solid black;
+  border-top: 1px solid #f8f9fa;
   padding: 0.5rem 0;
   margin-top: 0.5rem;
 }
@@ -123,4 +125,16 @@ p{
 .btn-l-1-2:hover{
   background-color: #2b9dff;
   color: white;
+}
+.nav-link{
+  cursor: pointer;
+}
+.home-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+.text-center{
+  text-align: center;
 }
