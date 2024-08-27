@@ -1,5 +1,10 @@
 $("#nav").load("shared/nav_bar.html");
 
+let dataSet;
+let width;
+let height;
+let svg;
+
 /**
  * Load a page into the content container and set the title of the page
  *
