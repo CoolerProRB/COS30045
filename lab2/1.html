@@ -1,0 +1,15 @@
+<div>
+    <h1>The D3 Journey starts here...</h1>
+    <div id="container"></div>
+    <script>
+        dataSet = [1, 2, 3, 4, 5]
+        d3.select("#container")
+            .selectAll("p")
+            .data(dataSet)
+            .enter()
+            .append("p")
+            .text(function (d, i) {
+                return "i = " + i + " d = "+d;
+            })
+    </script>
+</div>
