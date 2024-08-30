@@ -25,7 +25,7 @@ function loadPage(filePath, title){
             sessionStorage.setItem("path", filePath);
         },
         error: function(){
-            loadPage("home.html", "Home");
+            loadPage("main_page.html", "Home");
         }
     });
 }
