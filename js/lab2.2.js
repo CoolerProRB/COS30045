@@ -1,7 +1,7 @@
 width = 500;
 height = 100;
 
-dataSet = [10,20,30,25,14,12,13,11,15,23];
+dataSet = [10, 20, 30, 25, 14, 12, 13, 11, 15, 23];
 
 svg = d3.select("#container")
     .append("svg")
@@ -12,14 +12,14 @@ svg.selectAll("rect")
     .data(dataSet)
     .enter()
     .append("rect")
-    .attr("x", function (d, i){
+    .attr("x", function (d, i) {
         return i * (width / dataSet.length) + 5;
     })
-    .attr("y", function (d){
+    .attr("y", function (d) {
         return 0;
     })
     .attr("width", width / dataSet.length - 10)
-    .attr("height", function (d){
+    .attr("height", function (d) {
         return d * 3.5;
     })
     .style("fill", "blue")
@@ -28,14 +28,14 @@ svg.selectAll("text")
     .data(dataSet)
     .enter()
     .append("text")
-    .attr("x", function (d, i){
+    .attr("x", function (d, i) {
         return i * (width / dataSet.length) + 20;
     })
-    .attr("y", function (d){
+    .attr("y", function (d) {
         return d * 3;
     })
     .attr("font-size", "12px")
     .attr("fill", "white")
-    .text(function (d){
+    .text(function (d) {
         return d;
     })

@@ -25,16 +25,16 @@ function barChart(dataSet) {
             return i * (width / dataSet.length) + 5;
         })
         .attr("y", function (d) {
-            return d.wombats * 4;
+            return height - d.wombats * 12;
         })
         .attr("width", width / dataSet.length - 10)
         .attr("height", function (d) {
-            return height - 15 - (d.wombats * 4);
+            return d.wombats * 12;
         })
         .style("fill", function (d) {
-            if (d.wombats < 10) {
+            if (d.wombats <= 10) {
                 return "yellow";
-            } else if (d.wombats < 20) {
+            } else if (d.wombats <= 20) {
                 return "orange";
             } else {
                 return "brown";
@@ -49,10 +49,11 @@ function barChart(dataSet) {
             return d.wombats;
         })
         .attr("x", function (d, i) {
-            return i * (width / dataSet.length) + 30;
+            let x = d.wombats < 10 ? 35 : 30;
+            return i * (width / dataSet.length) + x;
         })
         .attr("y", function (d) {
-            return height;
+            return height - d.wombats * 12 - 5;
         })
         .attr("font-size", "12px")
         .attr("fill", "white");

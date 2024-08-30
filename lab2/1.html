@@ -2,14 +2,25 @@
     <h1>The D3 Journey starts here...</h1>
     <div id="container"></div>
     <script>
-        dataSet = [1, 2, 3, 4, 5]
+        dataSet = [14, 5, 26, 23, 9]
         d3.select("#container")
             .selectAll("p")
             .data(dataSet)
             .enter()
             .append("p")
             .text(function (d, i) {
-                return "i = " + i + " d = "+d;
+                if (d > 10) {
+                    return `Waring: Joe watched ${d} cat videos today.`;
+                } else {
+                    return `Joe watched ${d} cat videos today.`;
+                }
             })
+            .style("color", function (d, i) {
+                if (d > 10) {
+                    return "red";
+                } else {
+                    return "white";
+                }
+            });
     </script>
 </div>

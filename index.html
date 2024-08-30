@@ -16,16 +16,34 @@
         <div id="nav"></div>
         <div class="container"><div id="content"></div></div>
         <footer>COS30045 Data Visualisation</footer>
+        <script src="js/validate_route.js"></script>
         <script src="js/script.js"></script>
         <script>
-            let title = sessionStorage.getItem("title");
-            let path = sessionStorage.getItem("path");
+            const searchParams = new URLSearchParams(window.location.search);
 
-            if(title && path){
+            if (searchParams.has('lab')) {
+                let labParam = searchParams.get('lab');
+
+                const url = new URL(window.location);
+                url.searchParams.delete('lab');
+                window.history.replaceState({}, document.title, url.pathname);
+
+                let lab = labParam.split(".");
+                let path = "lab" + lab[0] + "/" + lab[1] + ".html";
+                let title = "Lab " + lab[0] + "." + lab[1];
+
                 loadPage(path, title);
             }
             else{
-                loadPage("home.html", "Home")
+                let title = sessionStorage.getItem("title");
+                let path = sessionStorage.getItem("path");
+
+                if(title && path){
+                    loadPage(path, title);
+                }
+                else{
+                    loadPage("home.html", "Home")
+                }
             }
         </script>
     </body>
