@@ -13,11 +13,20 @@ let svg;
  * @returns {void}
  */
 function loadPage(filePath, title){
-    $("#content").load(filePath);
-    $("title").text(title);
+    $.ajax({
+        url: filePath,
+        type: 'GET',
+        success: function(data){
+            $("#content").load(filePath);
+            $("title").text(title);
 
-    sessionStorage.setItem("title", title);
-    sessionStorage.setItem("path", filePath);
+            sessionStorage.setItem("title", title);
+            sessionStorage.setItem("path", filePath);
+        },
+        error: function(){
+            loadPage("home.html", "Home");
+        }
+    });
 }
 
 /**
