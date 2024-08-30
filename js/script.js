@@ -4,6 +4,7 @@ let dataSet;
 let width;
 let height;
 let svg;
+let padding;
 
 /**
  * Load a page into the content container and set the title of the page
