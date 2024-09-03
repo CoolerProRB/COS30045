@@ -5,6 +5,10 @@ let width;
 let height;
 let svg;
 let padding;
+let xScale;
+let yScale;
+let xAxis;
+let yAxis;
 
 /**
  * Load a page into the content container and set the title of the page

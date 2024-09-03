@@ -151,5 +151,9 @@ p {
 .text-center {
   text-align: center;
 }
-
-/*# sourceMappingURL=style.css.map */
+.image-table{
+  text-align: center;
+}
+.image-table img{
+  width: 90%;
+}

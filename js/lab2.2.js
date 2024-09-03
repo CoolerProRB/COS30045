@@ -16,7 +16,7 @@ svg.selectAll("rect")
         return i * (width / dataSet.length) + 5;
     })
     .attr("y", function (d) {
-        return 0;
+        return height - d * 3.5;
     })
     .attr("width", width / dataSet.length - 10)
     .attr("height", function (d) {
@@ -32,7 +32,7 @@ svg.selectAll("text")
         return i * (width / dataSet.length) + 20;
     })
     .attr("y", function (d) {
-        return d * 3;
+        return height - d * 2.5;
     })
     .attr("font-size", "12px")
     .attr("fill", "white")
