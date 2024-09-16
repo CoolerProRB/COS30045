@@ -151,9 +151,46 @@ p {
 .text-center {
   text-align: center;
 }
-.image-table{
-  text-align: center;
+
+.btn-l-5-1 {
+  background-color: #177b88;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
 }
-.image-table img{
-  width: 90%;
+.btn-l-5-1:hover {
+  background-color: #1e8b98;
 }
+
+.btn-l-5-2 {
+  background-color: #47ab71;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.btn-l-5-2:hover {
+  background-color: #54c282;
+}
+
+.btn-l-5-3 {
+  background-color: #9f3778;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.btn-l-5-3:hover {
+  background-color: #bd4b92;
+}
+
+/*# sourceMappingURL=style.css.map */
