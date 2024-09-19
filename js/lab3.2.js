@@ -1,28 +1,31 @@
-width = 600;
-height = 600;
-padding = 20;
+width = 600; // Width of the SVG
+height = 600; // Height of the SVG
+padding = 50; // Padding of the SVG
 
+// Data set
 dataSet = [
-    [5, 20],
-    [25, 67],
-    [85, 21],
-    [100, 33],
-    [220, 88],
-    [250, 50],
-    [330, 95],
-    [410, 12],
-    [475, 44],
-    [500, 90]
+    [2,8],
+    [3,5],
+    [5,17],
+    [6,6],
+    [6,12],
+    [7,20],
+    [8,22],
+    [10,11],
+    [5,12],
+    [6,16]
 ];
 
+// Scales
 xScale = d3.scaleLinear()
-    .domain([d3.min(dataSet, function(d) { return d[0]; }), d3.max(dataSet, function(d) { return d[0]; })])
+    .domain([0, d3.max(dataSet, function(d) { return d[0]; })])
     .range([padding, width - padding]);
 
 yScale = d3.scaleLinear()
     .domain([d3.max(dataSet, function(d) { return d[1]; }), d3.min(dataSet, function(d) { return d[1]; })])
     .range([padding, height - padding]);
 
+// Axes
 xAxis = d3.axisBottom()
     .ticks(10)
     .scale(xScale);
@@ -31,11 +34,13 @@ yAxis = d3.axisLeft()
     .ticks(20)
     .scale(yScale);
 
+// SVG
 svg = d3.select("#container")
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
+// Scatter plot
 svg.selectAll("circle")
     .data(dataSet)
     .enter()
@@ -56,6 +61,7 @@ svg.selectAll("circle")
         return "lightgray";
     });
 
+// Labels of the points
 svg.selectAll("text")
     .data(dataSet)
     .enter()
@@ -73,6 +79,7 @@ svg.selectAll("text")
     .attr("font-size", "11px")
     .attr("fill", "white");
 
+// X and Y axes
 svg.append("g")
     .attr("transform", "translate(0," + (height - padding) + ")")
     .call(xAxis);
@@ -80,3 +87,20 @@ svg.append("g")
 svg.append("g")
     .attr("transform", "translate(" + padding + ",0)")
     .call(yAxis);
+
+// Labels Y
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 20)
+    .attr("x", -height/3 - 50)
+    .text("Tree Height (m)")
+    .attr("fill", "white");
+
+// Labels X
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("y", width - 10)
+    .attr("x", width/2 + 40)
+    .text("Tree Age (year)")
+    .attr("fill", "white");

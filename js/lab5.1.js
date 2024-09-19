@@ -1,13 +1,16 @@
-width = 500;
-height = 300;
+width = 500; //Width
+height = 300; //Height
 
-padding = 20;
+padding = 20; //Padding
 
+// Data set
 dataSet = [14, 5, 26, 23, 9, 21, 7, 19, 22, 16, 2, 10];
 
+// Scales
 xScale = d3.scaleBand().domain(d3.range(dataSet.length)).rangeRound([padding, width - padding]).paddingInner(0.05);
 yScale = d3.scaleLinear().domain([d3.max(dataSet), 0]).rangeRound([padding, height]);
 
+// Axes
 xAxis = d3.axisBottom()
     .scale(xScale)
     .ticks(dataSet.length);
@@ -16,11 +19,13 @@ yAxis = d3.axisLeft()
     .scale(yScale)
     .ticks(10);
 
+// SVG
 svg = d3.select("#container")
     .append("svg")
     .attr("width", width)
     .attr("height", height + padding);
 
+// Bars
 svg.selectAll("rect")
     .data(dataSet)
     .enter()
@@ -37,6 +42,7 @@ svg.selectAll("rect")
     })
     .style("fill", "slategray")
 
+// Axes
 svg.append("g")
     .attr("transform", "translate(0," + (height) + ")")
     .call(xAxis);
@@ -45,6 +51,7 @@ svg.append("g")
     .attr("transform", "translate(" + padding + ",0)")
     .call(yAxis);
 
+// Buttons for update data
 d3.select(".btn-l-5-1")
     .on("click", function () {
         let length = dataSet.length;

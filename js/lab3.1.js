@@ -1,8 +1,9 @@
-height = 200;
-width = 500;
+height = 200; // Height of the SVG
+width = 500; // Width of the SVG
 
-padding = 20;
+padding = 20; // Padding of the SVG
 
+// Data set
 dataSet = [
     [5, 20],
     [25, 67],
@@ -16,6 +17,7 @@ dataSet = [
     [500, 90]
 ];
 
+// Scales
 xScale = d3.scaleLinear()
     .domain([d3.min(dataSet, function(d) { return d[0]; }), d3.max(dataSet, function(d) { return d[0]; })])
     .range([padding, width - padding]);
@@ -24,11 +26,13 @@ yScale = d3.scaleLinear()
     .domain([d3.min(dataSet, function(d) { return d[1]; }), d3.max(dataSet, function(d) { return d[1]; })])
     .range([padding, height - padding]);
 
+// SVG
 svg = d3.select("#container")
     .append("svg")
     .attr("width", width )
     .attr("height", height);
 
+// Scatter plot
 svg.selectAll("circle")
     .data(dataSet)
     .enter()
@@ -49,6 +53,7 @@ svg.selectAll("circle")
         return "lightgray";
     });
 
+// Labels for the data points
 svg.selectAll("text")
     .data(dataSet)
     .enter()
