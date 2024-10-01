@@ -42,6 +42,22 @@ svg.selectAll("rect")
     })
     .style("fill", "slategray")
 
+svg.selectAll("text")
+    .data(dataSet)
+    .enter()
+    .append("text")
+    .attr("x", function (d, i) {
+        return xScale(i) + xScale.bandwidth() / 3;
+    })
+    .attr("y", function (d) {
+        return yScale(d) + 15;
+    })
+    .attr("font-size", "12px")
+    .attr("fill", "white")
+    .text(function (d) {
+        return d;
+    })
+
 // Axes
 svg.append("g")
     .attr("transform", "translate(0," + (height) + ")")
@@ -70,4 +86,15 @@ d3.select(".btn-l-5-1")
             .attr("height", function (d) {
                 return height - yScale(d);
             });
+
+        svg.selectAll("text")
+            .data(dataSet)
+            .attr("y", function (d) {
+                return yScale(d) + 15;
+            })
+            .attr("font-size", "12px")
+            .attr("fill", "white")
+            .text(function (d) {
+                return d;
+            })
     });
