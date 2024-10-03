@@ -46,7 +46,7 @@ svg.selectAll("rect")
 
         svg.append("text")
             .attr("id", "tooltip")
-            .attr("x", xPosition + xScale.bandwidth() / 2)
+            .attr("x", d > 9 ? xPosition + xScale.bandwidth() / 3 - 3 : xPosition + xScale.bandwidth() / 3)
             .attr("y", yPosition + 15)
             .text(d);
 
@@ -105,9 +105,9 @@ d3.select(".btn-l-5-1")
 
                 svg.append("text")
                     .attr("id", "tooltip")
-                    .attr("x", xPosition + xScale.bandwidth() / 2)
+                    .attr("x", d > 9 ? xPosition + xScale.bandwidth() / 3 - 3 : xPosition + xScale.bandwidth() / 3)
                     .attr("y", yPosition + 15)
-                    .text(d.value);
+                    .text(d)
 
                 d3.select(this)
                     .transition()
