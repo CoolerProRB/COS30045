@@ -3,15 +3,9 @@ height = 300;
 padding = 20;
 
 dataSet = [14, 5, 26, 23, 9, 21, 7, 19, 22, 16, 2, 10];
-idCounter = dataSet.length;
-
-dataSet = dataSet.map(function(d, i) {
-    return { id: i, value: d };
-});
-
 // Scales
 xScale = d3.scaleBand().domain(d3.range(dataSet.length)).rangeRound([padding, width - padding]).paddingInner(0.05);
-yScale = d3.scaleLinear().domain([d3.max(dataSet, d => d.value), 0]).rangeRound([padding, height]);
+yScale = d3.scaleLinear().domain([d3.max(dataSet, d => d), 0]).rangeRound([padding, height]);
 
 // Axes
 xAxis = d3.axisBottom()
@@ -32,18 +26,18 @@ descending = true;
 
 // Bars
 svg.selectAll("rect")
-    .data(dataSet, function(d) { return d.id; })
+    .data(dataSet)
     .enter()
     .append("rect")
     .attr("x", function (d, i) {
         return xScale(i);
     })
     .attr("y", function (d) {
-        return yScale(d.value);
+        return yScale(d);
     })
     .attr("width", xScale.bandwidth())
     .attr("height", function (d) {
-        return height - yScale(d.value);
+        return height - yScale(d);
     })
     .style("fill", "slategray")
     .on("mouseover", function (event, d) {
@@ -54,7 +48,7 @@ svg.selectAll("rect")
             .attr("id", "tooltip")
             .attr("x", xPosition + xScale.bandwidth() / 2)
             .attr("y", yPosition + 15)
-            .text(d.value);
+            .text(d);
 
         d3.select(this)
             .transition()
@@ -86,23 +80,23 @@ d3.select(".btn-l-5-1")
         let maxValue = 25;
 
         let newNumber = Math.floor(Math.random() * maxValue) + 1;
-        dataSet.push({ id: idCounter++, value: newNumber });
+        dataSet.push(newNumber);
 
         xScale.domain(d3.range(dataSet.length));
-        yScale.domain([d3.max(dataSet, d => d.value), 0]);
+        yScale.domain([d3.max(dataSet, d => d), 0]);
 
         let bars = svg.selectAll("rect")
-            .data(dataSet, function(d) { return d.id; });
+            .data(dataSet);
 
         bars.enter()
             .append("rect")
             .attr("x", width)
             .attr("y", function (d) {
-                return yScale(d.value);
+                return yScale(d);
             })
             .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
-                return height - yScale(d.value);
+                return height - yScale(d);
             })
             .style("fill", "slategray")
             .on("mouseover", function (event, d) {
@@ -136,10 +130,10 @@ d3.select(".btn-l-5-1")
             })
             .attr("width", xScale.bandwidth())
             .attr("y", function (d) {
-                return yScale(d.value);
+                return yScale(d);
             })
             .attr("height", function (d) {
-                return height - yScale(d.value);
+                return height - yScale(d);
             });
 
         svg.select(".x-axis")
@@ -159,60 +153,61 @@ d3.select(".btn-l-5-2")
         dataSet.pop();
 
         xScale.domain(d3.range(dataSet.length));
-        yScale.domain([d3.max(dataSet, d => d.value), 0]);
 
         let bars = svg.selectAll("rect")
-            .data(dataSet, function(d) { return d.id; });
+            .data(dataSet);
 
         bars.exit()
+            .filter(function(d, i) { return i === dataSet.length; })
             .transition()
             .duration(500)
             .attr("x", width)
             .remove();
 
-        bars.transition()
+        bars.enter()
+            .append("rect")
+            .attr("x", function (d, i) {
+                return width;
+            })
+            .attr("y", function (d) {
+                return height - yScale(d);
+            })
+            .merge(bars)
+            .transition()
             .duration(500)
             .attr("x", function (d, i) {
                 return xScale(i);
             })
-            .attr("width", xScale.bandwidth())
             .attr("y", function (d) {
-                return yScale(d.value);
+                return yScale(d);
             })
+            .attr("width", xScale.bandwidth())
             .attr("height", function (d) {
-                return height - yScale(d.value);
-            });
+                return height - yScale(d);
+            })
+            .style("fill", "slategray");
 
         svg.select(".x-axis")
             .transition()
             .duration(500)
             .call(xAxis);
-
-        svg.select(".y-axis")
-            .transition()
-            .duration(500)
-            .call(yAxis);
     });
 
 d3.select("#sort")
     .on("click", function () {
         descending = !descending;
-        dataSet.sort(function(a, b) {
-            return descending ? d3.descending(a.value, b.value) : d3.ascending(a.value, b.value);
-        });
-
-        xScale.domain(d3.range(dataSet.length));
 
         svg.selectAll("rect")
-            .data(dataSet, function(d) { return d.id; })
+            .sort(function (a, b) {
+                if (!descending) {
+                    return d3.ascending(a, b);
+                } else {
+                    return d3.descending(a, b);
+                }
+            })
             .transition()
             .duration(500)
             .attr("x", function (d, i) {
                 return xScale(i);
             });
-
-        svg.select(".x-axis")
-            .transition()
-            .duration(500)
-            .call(xAxis);
     });
