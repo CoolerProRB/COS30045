@@ -11,6 +11,7 @@ let xAxis;
 let yAxis;
 let transition;
 let currentTrans;
+let descending;
 
 /**
  * Load a page into the content container and set the title of the page
