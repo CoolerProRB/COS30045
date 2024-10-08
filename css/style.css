@@ -192,5 +192,17 @@ p {
 .btn-l-5-3:hover {
   background-color: #bd4b92;
 }
+.line{
+  fill: none;
+  stroke: red;
+  stroke-width: 0.5;
+  stroke-dasharray: 10,5;
+}
 
+.area{
+    fill: slategray;
+}
+.halfMilMark{
+  fill: red;
+}
 /*# sourceMappingURL=style.css.map */
