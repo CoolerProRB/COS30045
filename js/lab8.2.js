@@ -62,6 +62,50 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                             else{
                                 return color(1);
                             }
+                        })
+                        .on("mouseover", function (d) {
+                            d3.select(this).style("fill", function () {
+                                if (dataValue < 1000){
+                                    return color(0.1);
+                                }
+                                else if (dataValue < 2500){
+                                    return color(0.3);
+                                }
+                                else if (dataValue < 5000){
+                                    return color(0.5);
+                                }
+                                else if (dataValue < 7500){
+                                    return color(0.6);
+                                }
+                                else if (dataValue < 10000){
+                                    return color(0.7);
+                                }
+                                else{
+                                    return color(0.9);
+                                }
+                            });
+                        })
+                        .on("mouseout", function (d) {
+                            d3.select(this).style("fill", function () {
+                                if (dataValue < 1000){
+                                    return color(0.2);
+                                }
+                                else if (dataValue < 2500){
+                                    return color(0.4);
+                                }
+                                else if (dataValue < 5000){
+                                    return color(0.6);
+                                }
+                                else if (dataValue < 7500){
+                                    return color(0.7);
+                                }
+                                else if (dataValue < 10000){
+                                    return color(0.8);
+                                }
+                                else{
+                                    return color(1);
+                                }
+                            });
                         });
                     break;
                 }
