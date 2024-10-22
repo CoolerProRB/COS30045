@@ -1,5 +1,5 @@
-width = 500;  // Set the width of the SVG canvas
-height = 300; // Set the height of the SVG canvas
+width = 500;
+height = 300;
 
 // SVG canvas setup
 svg = d3.select('#container').append('svg')  // Create an SVG element within the container
