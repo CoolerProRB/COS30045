@@ -40,21 +40,6 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                 .attr('d', path)                    // Define the path using the geoPath generator
                 .attr("id", function (d, i) {
                     return d.properties.LGA_name.replaceAll(" ", "_"); // Assign an ID based on the LGA name
-                })
-                .on('mouseover', function(event, d) { // Add mouseover event for tooltip
-                    const centroid = path.centroid(d);
-                    svg.append("text")
-                        .attr("x", centroid[0])
-                        .attr("y", centroid[1])
-                        .attr("class", "tooltip")
-                        .attr("text-anchor", "middle")
-                        .text(d.properties.LGA_name)
-                        .style("font-size","12px")
-                        .attr("fill","black");
-                })
-                .on('mouseout', function() { // Remove tooltip on mouseout
-                    d3.select(this).style('stroke', 'none');
-                    svg.selectAll(".tooltip").remove();
                 });
 
             // Loop through geojson features to match with data
@@ -111,7 +96,9 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                         .attr("y", projection([d.lon, +d.lat])[1] - 10)
                         .attr("class", "tooltip")
                         .attr("text-anchor", "middle")
-                        .text(d.city);
+                        .text(d.place)
+                        .style("fill","black")
+                        .style("font-size","14px");
                 })
                 .on('mouseout', function() { // Remove tooltip on mouseout
                     d3.select(this).attr('r', 5); // Restore original circle size
