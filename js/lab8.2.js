@@ -40,6 +40,21 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                 .attr('d', path)                    // Define the path using the geoPath generator
                 .attr("id", function (d, i) {
                     return d.properties.LGA_name.replaceAll(" ", "_"); // Assign an ID based on the LGA name
+                })
+                .on('mouseover', function(event, d) { // Add mouseover event for tooltip
+                    const centroid = path.centroid(d);
+                    svg.append("text")
+                        .attr("x", centroid[0])
+                        .attr("y", centroid[1])
+                        .attr("class", "tooltip")
+                        .attr("text-anchor", "middle")
+                        .text(d.properties.LGA_name)
+                        .style("font-size","12px")
+                        .attr("fill","black");
+                })
+                .on('mouseout', function() { // Remove tooltip on mouseout
+                    d3.select(this).style('stroke', 'none');
+                    svg.selectAll(".tooltip").remove();
                 });
 
             // Loop through geojson features to match with data
@@ -71,52 +86,6 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                             else{
                                 return color(1);
                             }
-                        })
-                        // Add mouseover interaction to change fill color
-                        .on("mouseover", function (d) {
-                            d3.select(this).style("fill", function () {
-                                if (dataValue < 1000){
-                                    return color(0.1);
-                                }
-                                else if (dataValue < 2500){
-                                    return color(0.3);
-                                }
-                                else if (dataValue < 5000){
-                                    return color(0.5);
-                                }
-                                else if (dataValue < 7500){
-                                    return color(0.6);
-                                }
-                                else if (dataValue < 10000){
-                                    return color(0.7);
-                                }
-                                else{
-                                    return color(0.9);
-                                }
-                            });
-                        })
-                        // Add mouseout interaction to revert fill color
-                        .on("mouseout", function (d) {
-                            d3.select(this).style("fill", function () {
-                                if (dataValue < 1000){
-                                    return color(0.2);
-                                }
-                                else if (dataValue < 2500){
-                                    return color(0.4);
-                                }
-                                else if (dataValue < 5000){
-                                    return color(0.6);
-                                }
-                                else if (dataValue < 7500){
-                                    return color(0.7);
-                                }
-                                else if (dataValue < 10000){
-                                    return color(0.8);
-                                }
-                                else{
-                                    return color(1);
-                                }
-                            });
                         });
                     break; // Stop loop once match is found
                 }
@@ -134,7 +103,20 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
                 .attr("cy", d => projection([d.lon, +d.lat])[1]) // Set y position using projection
                 .attr("r", 5)                             // Set radius of the circle
                 .attr("fill", "red")                      // Set fill color of the circle
-                .style("opacity", 0.75);                  // Set opacity of the circle
+                .style("opacity", 0.75)                   // Set opacity of the circle
+                .on('mouseover', function(event, d) { // Add mouseover event for city/town tooltips
+                    d3.select(this).attr('r', 7); // Increase circle size on hover
+                    svg.append("text")
+                        .attr("x", projection([d.lon, +d.lat])[0])
+                        .attr("y", projection([d.lon, +d.lat])[1] - 10)
+                        .attr("class", "tooltip")
+                        .attr("text-anchor", "middle")
+                        .text(d.city);
+                })
+                .on('mouseout', function() { // Remove tooltip on mouseout
+                    d3.select(this).attr('r', 5); // Restore original circle size
+                    svg.selectAll(".tooltip").remove();
+                });
         });
     });
 });
