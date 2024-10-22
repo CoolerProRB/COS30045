@@ -74,6 +74,31 @@ function init() {
             return yScale(d[0]) - yScale(d[1]); // Calculate the height of the rectangle based on the difference between top and bottom values
         })
         .attr("width", xScale.bandwidth()); // Set the width of the rectangle based on xScale bandwidth
+
+    svg.append("circle").attr("cx",10).attr("cy",10).attr("r", 6).style("fill", color(2))
+    svg.append("circle").attr("cx",10).attr("cy",30).attr("r", 6).style("fill", color(1))
+    svg.append("circle").attr("cx",10).attr("cy",50).attr("r", 6).style("fill", color(0))
+    svg.append("text")
+        .attr("x", 20)
+        .attr("y", 10)
+        .text("Apples")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+        .attr("fill","white")
+    svg.append("text")
+        .attr("x", 20)
+        .attr("y", 30)
+        .text("Oranges")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+        .attr("fill","white")
+    svg.append("text")
+        .attr("x", 20)
+        .attr("y", 50)
+        .text("Grapes")
+        .style("font-size", "15px")
+        .attr("alignment-baseline","middle")
+        .attr("fill","white")
 }
 
 // Call the init function to render the stacked bar chart
