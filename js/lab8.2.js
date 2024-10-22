@@ -93,7 +93,7 @@ d3.csv("csv/VIC_LGA_unemployment.csv").then(data => {
         }
 
         // Load city/town data from CSV
-        d3.csv("csv/VIC_CITY.csv").then(cityData => {
+        d3.csv("csv/VIC_city.csv").then(cityData => {
             // Add circles to represent the cities/towns on the map
             svg.selectAll("circle")
                 .data(cityData)                           // Bind city data to circles
